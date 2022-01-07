@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body{
+            font-family: 'Lato', sans-serif;
+        }
+    </style>
+</head>
+<body>
+<form action="#" th:action="@{/api/apply}" th:object="${user}" method="post">
+    <ul style="display: flex">
+        <p style=""><b>Fill Application Form</b></p>
+    </ul>
+    <ul style="display: flex">
+        <label style="width: 120px" for="firstName">First name</label>
+        <input required type="text" th:name="firstName" id="firstName" placeholder="First name">
+    </ul>
+    <ul style="display: flex;">
+        <label style="width: 120px;" for="lastName">Last name</label>
+        <input required type="text" th:name="lastName" id="lastName" placeholder="Last name">
+    </ul>
+    <ul style="display: flex;">
+        <label style="width: 120px;" for="email">Email</label>
+        <input required type="email" th:name="email" th:field="*{email}" id="email" placeholder="Email">
+    </ul>
+    <ul style="display: flex;">
+        <label style="width: 120px;" for="phoneNumber">Phone number</label>
+        <input required type="text" th:name="phoneNumber" id="phoneNumber" placeholder="Phone number">
+    </ul>
+    <ul style="display: flex;">
+        <label style="width: 120px;" for="city">City</label>
+        <input required type="text" th:name="city" id="city" placeholder="City">
+    </ul>
+    <ul style="display: flex;">
+        <label style="width: 120px;" for="address1">Address 1</label>
+        <input required type="text" th:name="address1" id="address1" placeholder="Address 1">
+    </ul>
+    <ul style="display: flex;">
+        <label style="width: 120px;" for="address2">Address 2</label>
+        <input required type="text" th:name="address2" id="address2" placeholder="Address 2">
+    </ul>
+    <ul style="display: flex;">
+        <label style="width: 120px;" for="zipcode">ZIP code</label>
+        <input required type="text" th:name="zipcode" id="zipcode" placeholder="ZIP code">
+    </ul>
+    <ul style="display: flex;">
+        <label style="width: 120px;" for="unemplDate">Unempl. Date</label>
+        <input required type="date" th:name="unemplDate" id="unemplDate" placeholder="Unempl. Date">
+    </ul>
+    <ul style="display: flex;">
+        <label style="width: 120px;" for="photo">Photo</label>
+        <input required type="file" th:name="photo" id="photo" placeholder="Photo">
+    </ul>
+    <ul>
+        <input type="submit" value="Apply">
+    </ul>
+</form>
+</body>
+</html>
