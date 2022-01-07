@@ -1,0 +1,1 @@
+Τα SQL queries βρίσκονται στον φάκελο queries.sql
