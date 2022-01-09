@@ -37,4 +37,12 @@ public class ApplicationsDAOImpl implements ApplicationsDAO {
         return application;
     }
 
+    @Override
+    public List<Applications> getNewApplications() {
+        Query theQuery = entityManager.createQuery("select A from Applications AS A where A.validated='null' and A.confirmed='null'");
+        List<Applications> applications = theQuery.getResultList();
+
+        return applications;
+    }
+
 }

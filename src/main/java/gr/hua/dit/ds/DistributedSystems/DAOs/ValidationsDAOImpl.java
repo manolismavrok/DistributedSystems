@@ -36,4 +36,12 @@ public class ValidationsDAOImpl implements ValidationsDAO {
 
         return validations;
     }
+
+    @Override
+    public List<Validations> getNewValidations() {
+        Query theQuery = entityManager.createQuery("select V from Validations AS V where  V.validated='true' and V.confirmed='null'");
+        List<Validations> validations = theQuery.getResultList();
+
+        return validations;
+    }
 }

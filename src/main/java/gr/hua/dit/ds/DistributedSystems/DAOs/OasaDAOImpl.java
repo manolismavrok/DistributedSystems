@@ -20,7 +20,7 @@ public class OasaDAOImpl implements OasaDAO {
 
     @Override
     @Transactional
-    public Validations reject(Validations validation) {
+    public Validations rejectValidation(Validations validation) {
         entityManager.remove(validation);
         entityManager.flush();
 

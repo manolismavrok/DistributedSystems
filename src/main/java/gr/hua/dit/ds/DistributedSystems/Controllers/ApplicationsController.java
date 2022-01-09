@@ -29,4 +29,11 @@ public class ApplicationsController {
         return application;
     }
 
+    @GetMapping("/api/applications/getNewApplications")
+    public List<Applications> getNewApplications() {
+        List<Applications> applications = applicationsDAO.getNewApplications();
+
+        return applications;
+    }
+
 }

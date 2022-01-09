@@ -117,7 +117,7 @@ public class UsersController {
         app.setValidated("true");
         Validations validation = new Validations(id, app.getFirstName(), app.getLastName(), app.getEmail(), app.getPhoneNumber(), app.getCity(),
                 app.getAddress1(), app.getAddress2(), app.getZip(), app.getUnemplDate(), app.getPhoto(), app.getValidated(), app.getConfirmed());
-        oaedDAO.validate(validation);
+        oaedDAO.validateApplication(validation);
 
         return validation;
     }
@@ -125,7 +125,7 @@ public class UsersController {
     @PostMapping("/api/oaed/rejectApplication")
     public Applications rejectApplication(@RequestParam int id) {
         Applications application = applicationsDAO.getApplicationById(id);
-        oaedDAO.reject(application);
+        oaedDAO.rejectApplication(application);
 
         return application;
     }
@@ -141,7 +141,7 @@ public class UsersController {
     @PostMapping("/api/oasa/rejectValidation")
     public Validations rejectValidation(@RequestParam int id) {
         Validations validation = validationsDAO.getValidationsById(id);
-        oasaDAO.reject(validation);
+        oasaDAO.rejectValidation(validation);
 
         return validation;
     }

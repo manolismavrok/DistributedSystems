@@ -28,4 +28,11 @@ public class ValidationsController {
 
         return validation;
     }
+
+    @GetMapping("/api/validations/getNewValidations")
+    public List<Validations> getNewValidations() {
+        List<Validations> validations = validationsDAO.getNewValidations();
+
+        return validations;
+    }
 }

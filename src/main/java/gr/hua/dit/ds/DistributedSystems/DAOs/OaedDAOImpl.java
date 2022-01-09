@@ -21,7 +21,7 @@ public class OaedDAOImpl implements OaedDAO {
 
     @Override
     @Transactional
-    public Validations validate(Validations validation) {
+    public Validations validateApplication(Validations validation) {
         entityManager.persist(validation);
         entityManager.flush();
 
@@ -30,7 +30,7 @@ public class OaedDAOImpl implements OaedDAO {
 
     @Override
     @Transactional
-    public Applications reject(Applications application) {
+    public Applications rejectApplication(Applications application) {
         entityManager.remove(application);
         entityManager.flush();
 

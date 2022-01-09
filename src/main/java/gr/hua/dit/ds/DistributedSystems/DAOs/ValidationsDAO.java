@@ -7,4 +7,5 @@ import java.util.List;
 public interface ValidationsDAO {
     List<Validations> getAllValidations();
     Validations getValidationsById(int id);
+    List<Validations> getNewValidations();
 }
