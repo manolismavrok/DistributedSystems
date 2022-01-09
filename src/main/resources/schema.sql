@@ -1,7 +1,7 @@
 create database if not exists ds;
 use ds;
 
-create table users (
+create table if not exists users (
     id int(10) not null auto_increment,
     username varchar(50) not null,
     password varchar(255) not null,
@@ -12,7 +12,7 @@ create table users (
     index index_users_username (username)
 );
 
-create table applications (
+create table if not exists applications (
     id int(10) not null,
     first_name varchar(50) not null,
     last_name varchar(50) not null,
@@ -30,9 +30,9 @@ create table applications (
     foreign key (id) references users(id)
 );
 
-create table validations select * from applications;
+create table if not exists validations select * from applications;
 
-create table authorities (
+create table if not exists authorities (
     username varchar(50) not null,
     authority varchar(20) not null,
     unique key uk_authorities_usr_auth (username,authority),
