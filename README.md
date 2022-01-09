@@ -1,1 +1,1 @@
-Τα SQL queries βρίσκονται στον φάκελο queries.sql
+Τα SQL queries βρίσκονται στα αρχεία data.sql και schema.sql κάτω από τον φάκελο resources.
