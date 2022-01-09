@@ -8,4 +8,3 @@ insert into authorities values ('myusername', 'ROLE_CIVILIAN');
 insert into authorities values ('yourusername', 'ROLE_OAED');
 insert into authorities values ('hisusername', 'ROLE_OASA');
 insert into authorities values ('admin', 'ROLE_ADMIN');
-insert into authorities values ('ourusername', 'ROLE_OASA');

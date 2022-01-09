@@ -1,6 +1,10 @@
 create database if not exists ds;
 use ds;
 
+drop table authorities;
+drop table validations;
+drop table applications;
+drop table users;
 create table if not exists users (
     id int(10) not null auto_increment,
     username varchar(50) not null,
