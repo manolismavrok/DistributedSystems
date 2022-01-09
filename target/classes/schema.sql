@@ -1,4 +1,4 @@
-create database ds;
+create database if not exists ds;
 use ds;
 
 create table users (
