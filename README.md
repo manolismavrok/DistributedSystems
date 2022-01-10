@@ -11,7 +11,7 @@
      Αποσυμπιέστε το αρχείο (Extract) στον κατάλογο.
 
 **Εκκίνηση:**
-- Πηγαίνετε στον κατάλογο που κατεβάσατε το repo και ανοίξτε τον φάκελο
-DistributedSystems (ή DistributedSystems-main).
-- Τρέξτε την εντολή: **java -jar target/DistributedSystems-0.0.1-SNAPSHOT.jar**
+- Μέσω terminal πηγαίνετε στο αρχείο που κατεβάσατε με όνομα DistributedSystems
+(ή DistributedSystems-main).
+- Στο αρχείο αυτό, τρέξτε την εντολή: **java -jar target/DistributedSystems-0.0.1-SNAPSHOT.jar**
 
