@@ -1,20 +1,16 @@
 create database if not exists ds;
 use ds;
 
-drop table authorities;
-drop table validations;
-drop table applications;
-drop table users;
 create table if not exists users (
     id int(10) not null auto_increment,
     username varchar(50) not null,
     password varchar(255) not null,
     email varchar(50) not null,
-    enabled tinyint(1) not null,
+    enabled boolean not null,
     primary key (id),
     unique key uk_users_username (username),
     index index_users_username (username)
-);
+)Engine=InnoDB;
 
 create table if not exists applications (
     id int(10) not null,
@@ -32,7 +28,7 @@ create table if not exists applications (
     confirmed varchar(5),
     primary key (id),
     foreign key (id) references users(id)
-);
+)Engine=InnoDB;
 
 create table if not exists validations select * from applications;
 
@@ -43,4 +39,4 @@ create table if not exists authorities (
     foreign key (username) references users (username)
     on update cascade
     on delete cascade
-);
+)Engine=InnoDB;
