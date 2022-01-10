@@ -18,8 +18,7 @@
 **Εκκίνηση:**
 </br>
 - Πηγαίνετε στον κατάλογο που κατεβάσατε το repo και ανοίξτε τον φάκελο
-</br>
-    DistributedSystems (ή DistributedSystems-main).
+DistributedSystems (ή DistributedSystems-main).
 - Τρέξτε την εντολή:
 </br>
 **java -jar target/DistributedSystems-0.0.1-SNAPSHOT.jar**
