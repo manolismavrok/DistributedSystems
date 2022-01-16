@@ -3,7 +3,9 @@ package gr.hua.dit.ds.DistributedSystems.Entities;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "users")
+@Table(name = "users", indexes = {
+        @Index(name = "index_users_username", columnList = "username"),
+})
 public class Users {
 
     @Id
@@ -11,13 +13,13 @@ public class Users {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "username")
+    @Column(name = "username", nullable = false, unique = true)
     private String username;
 
-    @Column(name = "password")
+    @Column(name = "password", nullable = false)
     private String password;
 
-    @Column(name = "email")
+    @Column(name = "email", nullable = false, unique = true)
     private String email;
 
     @Column(name = "enabled", nullable = false)

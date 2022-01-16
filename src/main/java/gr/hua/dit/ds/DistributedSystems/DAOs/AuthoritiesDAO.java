@@ -6,7 +6,9 @@ import java.util.List;
 
 public interface AuthoritiesDAO {
     List<Authorities> getAllAuthorities();
+    Authorities getAuthorityById(int id);
     Authorities getAuthorityByUsername(String username);
     Authorities addAuthority(Authorities authority);
-    Authorities modifyAuthority(String newUsername, String newAuth);
+    Authorities deleteAuthority(Authorities authority);
+    Authorities modifyAuthority(int id, String newUsername, String newAuth);
 }

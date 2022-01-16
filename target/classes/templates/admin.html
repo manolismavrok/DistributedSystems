@@ -2,9 +2,10 @@
 <html xmlns:th="http://thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title></title>
+    <title>Admin View</title>
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
     <style>
         body{
             font-family: 'Lato', sans-serif;
@@ -12,6 +13,129 @@
     </style>
 </head>
 <body>
-Hello Admin!
+<iframe id="none" name="none" style="display: none"></iframe>
+
+<button class="home-btn" type="button" style="position: absolute; width: 4%; right: 1%" onclick="window.location.replace('/logout')">Log out</button>
+
+
+<!-- Home page -->
+<div id="home">
+    <ul class="center-title">
+        <h>Admin</h>
+    </ul>
+    <form class="center-body">
+        <ul>
+            <button class="home-btn" type="button" onclick="showViewById('createUser')">Create User</button>
+        </ul>
+        <ul>
+            <button class="home-btn" type="button" onclick="showViewById('modifyUser')">Modify User</button>
+        </ul>
+        <ul>
+            <button class="home-btn" type="button" onclick="showViewById('deleteUser')">Delete User</button>
+        </ul>
+    </form>
+</div>
+
+<!-- Create User view -->
+<div id="createUser" style="display: none">
+    <ul class="center-title" style="top: 15%">
+        <h>Create user</h>
+    </ul>
+    <form class="center-body" action="/api/admin/createUser" method="post"
+          onsubmit="this.submit(); this.reset(); return false;">
+        <ul>
+            <label class="text">Username</label>
+            <input class="input" type="text" name="username" placeholder="Username" required>
+        </ul>
+        <ul>
+            <label class="text">Password</label>
+            <input class="input" type="password" name="password" placeholder="Password" required>
+        </ul>
+        <ul>
+            <label class="text">Email</label>
+            <input class="input" type="text" name="email" placeholder="Email" required>
+        </ul>
+        <ul>
+            <label class="text">Authority</label>
+            <input class="input" type="text" name="auth" placeholder="Authority" required>
+        </ul>
+        <ul>
+            <input class="home-btn" type="submit" value="Create">
+        </ul>
+        <ul>
+            <button class="home-btn" type="button" onclick="showViewById('home')">Menu</button>
+        </ul>
+    </form>
+</div>
+
+<!-- Modify User view -->
+<div id="modifyUser" style="display: none">
+    <ul class="center-title" style="top: 10%">
+        <h>Modify user</h>
+    </ul>
+    <form class="center-body" action="/api/admin/modifyUser" method="post"
+          onsubmit="this.submit(); this.reset(); return false;">
+        <ul>
+            <label class="text">Username</label>
+            <input class="input" type="text" name="username" placeholder="Username" required>
+        </ul>
+        <ul>
+            <label class="text">New Username</label>
+            <input class="input" type="text" name="newUsername" placeholder="New Username" required>
+        </ul>
+        <ul>
+            <label class="text">New Password</label>
+            <input class="input" type="password" name="newPassword" placeholder="New Password" required>
+        </ul>
+        <ul>
+            <label class="text">New Email</label>
+            <input class="input" type="text" name="newEmail" placeholder="New Email" required>
+        </ul>
+        <ul>
+            <label class="text">New Authority</label>
+            <input class="input" type="text" name="newAuth" placeholder="New Authority" required>
+        </ul>
+        <ul>
+            <input class="home-btn" type="submit" value="Modify">
+        </ul>
+        <ul>
+            <button class="home-btn" type="button" onclick="showViewById('home')">Menu</button>
+        </ul>
+    </form>
+</div>
+
+<!-- Delete User view -->
+<div id="deleteUser" style="display: none">
+    <ul class="center-title" style="top: 30%">
+        <h>Delete user</h>
+    </ul>
+    <form class="center-body" action="/api/admin/deleteUser" method="post"
+          onsubmit="this.submit(); this.reset(); return false;">
+        <ul>
+            <label class="text">Username</label>
+            <input class="input" type="text" name="username" placeholder="Username" required>
+        </ul>
+        <ul>
+            <input class="home-btn" type="submit" value="Delete">
+        </ul>
+        <ul>
+            <button class="home-btn" type="button" onclick="showViewById('home')">Menu</button>
+        </ul>
+    </form>
+</div>
+
 </body>
+
+<!-- Script to change views -->
+<script>
+
+    function showViewById(view) {
+        document.getElementById("home").style.display = "none";
+        document.getElementById("createUser").style.display = "none";
+        document.getElementById("deleteUser").style.display = "none";
+        document.getElementById("modifyUser").style.display = "none";
+        document.getElementById(view).style.display = "";
+    }
+
+</script>
 </html>

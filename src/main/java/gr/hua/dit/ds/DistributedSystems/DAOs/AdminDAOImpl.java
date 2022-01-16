@@ -30,8 +30,8 @@ public class AdminDAOImpl implements AdminDAO {
 
     @Override
     @Transactional
-    public Users modifyUser(int id, String newUsername, String newPassword, String newEmail, String newAuth) {
-        Users user = usersDAO.getUserById(id);
+    public Users modifyUser(String username, String newUsername, String newPassword, String newEmail, String newAuth) throws Exception {
+        Users user = usersDAO.getUserByUsername(username);
         user.setUsername(newUsername);
         user.setPassword(newPassword);
         user.setEmail(newEmail);

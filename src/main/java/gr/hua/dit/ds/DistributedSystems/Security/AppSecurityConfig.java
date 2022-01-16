@@ -27,27 +27,30 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.jdbcAuthentication().dataSource(dataSource).passwordEncoder(passwordEncoder())
                 .usersByUsernameQuery("select username,password,enabled from users where username=?")
-                .authoritiesByUsernameQuery("select username,authority from authorities where username=?");
+                .authoritiesByUsernameQuery("select name,authority from authorities where name=?");
     }
 
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.httpBasic()
-                .and()
+        http.httpBasic().and()
                 .csrf().disable()
                 .authorizeRequests()
+                .antMatchers("/admin/**").hasRole("ADMIN")
                 .antMatchers("/api/users/**").hasRole("ADMIN")
                 .antMatchers("/api/admin/**").hasRole("ADMIN")
                 .antMatchers("/api/authorities/**").hasRole("ADMIN")
+                .antMatchers("/civilian/**").hasRole("CIVILIAN")
                 .antMatchers("/api/civilian/**").hasRole("CIVILIAN")
+                .antMatchers("/oaed/**").hasRole("OAED")
                 .antMatchers("/api/oaed/**").hasRole("OAED")
                 .antMatchers("/api/applications/**").hasRole("OAED")
+                .antMatchers("/oasa/**").hasRole("OASA")
                 .antMatchers("/api/oasa/**").hasRole("OASA")
                 .antMatchers("/api/validations/**").hasRole("OASA")
                 .anyRequest().authenticated()
                 .and()
-                .formLogin().loginProcessingUrl("/authUser").permitAll()
+                .formLogin().loginPage("/login").permitAll().defaultSuccessUrl("/", true)
                 .and()
                 .logout().permitAll()
                 .and()

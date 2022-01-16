@@ -8,6 +8,8 @@ public interface ApplicationsDAO {
     List<Applications> getAllApplications();
     Applications getApplicationById(int id);
     List<Applications> getNewApplications();
+    List<Applications> getValidatedApplications();
+    Boolean applicationExists(int id);
 }
 
 

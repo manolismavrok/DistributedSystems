@@ -1,0 +1,26 @@
+@import "style.css";
+@import "civilian.css";
+
+.table, th, td {
+    border:1px solid #007bff;
+    padding: 4px 8px;
+}
+
+.employee-btn {
+    box-sizing: inherit;
+    font-family: inherit;
+    border: 1px solid transparent;
+    transition: all .15s ease-in-out;
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+    font-size: 1.25rem;
+    line-height: 1.5;
+    border-radius: .3rem;
+    display: inline-block;
+}
+
+.employee-btn:hover {
+    background-color: #76b3f6;
+    border-color: #76b3f6;
+}

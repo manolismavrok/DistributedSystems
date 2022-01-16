@@ -10,7 +10,7 @@ create table if not exists users (
     primary key (id),
     unique key uk_users_username (username),
     index index_users_username (username)
-)Engine=InnoDB;
+);
 
 create table if not exists applications (
     id int(10) not null,
@@ -23,20 +23,17 @@ create table if not exists applications (
     address2 varchar(50) not null,
     zip varchar(10) not null,
     unempl_date varchar(50) not null,
-    photo varchar(50) not null,
+    photo mediumblob not null,
     validated varchar(5),
     confirmed varchar(5),
     primary key (id),
     foreign key (id) references users(id)
-)Engine=InnoDB;
-
-create table if not exists validations select * from applications;
+);
 
 create table if not exists authorities (
-    username varchar(50) not null,
+    id int(10) not null,
+    name varchar(50) not null,
     authority varchar(20) not null,
-    unique key uk_authorities_usr_auth (username,authority),
-    foreign key (username) references users (username)
-    on update cascade
-    on delete cascade
-)Engine=InnoDB;
+    primary key (id),
+    foreign key (id) references  users (id)
+);

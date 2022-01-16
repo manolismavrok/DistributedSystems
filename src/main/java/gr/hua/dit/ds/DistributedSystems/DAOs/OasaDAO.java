@@ -1,7 +1,8 @@
 package gr.hua.dit.ds.DistributedSystems.DAOs;
 
-import gr.hua.dit.ds.DistributedSystems.Entities.Validations;
+import gr.hua.dit.ds.DistributedSystems.Entities.Applications;
 
 public interface OasaDAO {
-    Validations rejectValidation(Validations validation);
+    Applications confirmApplication(Applications application);
+    Applications rejectApplication(Applications application);
 }

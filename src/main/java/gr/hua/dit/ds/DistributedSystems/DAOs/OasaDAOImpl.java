@@ -1,6 +1,6 @@
 package gr.hua.dit.ds.DistributedSystems.DAOs;
 
-import gr.hua.dit.ds.DistributedSystems.Entities.Validations;
+import gr.hua.dit.ds.DistributedSystems.Entities.Applications;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,10 +20,17 @@ public class OasaDAOImpl implements OasaDAO {
 
     @Override
     @Transactional
-    public Validations rejectValidation(Validations validation) {
-        entityManager.remove(validation);
-        entityManager.flush();
+    public Applications confirmApplication(Applications application) {
+        application.setConfirmed("true");
 
-        return validation;
+        return application;
+    }
+
+    @Override
+    @Transactional
+    public Applications rejectApplication(Applications application) {
+        application.setConfirmed("false");
+
+        return application;
     }
 }

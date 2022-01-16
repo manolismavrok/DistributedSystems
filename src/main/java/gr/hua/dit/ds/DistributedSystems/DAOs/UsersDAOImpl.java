@@ -59,6 +59,24 @@ public class UsersDAOImpl implements UsersDAO {
     }
 
     @Override
+    public Boolean usernameExists(String username) {
+        Query theQuery = entityManager.createQuery("select U from Users AS U where U.username=:username");
+        theQuery.setParameter("username", username);
+        List<Users> result = theQuery.getResultList();
+
+        return !result.isEmpty();
+    }
+
+    @Override
+    public Boolean emailExists(String email) {
+        Query theQuery = entityManager.createQuery("select U from Users AS U where U.email=:email");
+        theQuery.setParameter("email", email);
+        List<Users> result = theQuery.getResultList();
+
+        return !result.isEmpty();
+    }
+
+    @Override
     @Transactional
     public Users signIn(Users user) {
         entityManager.persist(user);

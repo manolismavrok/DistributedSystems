@@ -2,9 +2,10 @@
 <html xmlns:th="http://thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title></title>
+    <title>OAED View</title>
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <link href="employee.css" rel="stylesheet">
     <style>
         body{
             font-family: 'Lato', sans-serif;
@@ -12,6 +13,146 @@
     </style>
 </head>
 <body>
-Hello OAED Employee!
+<iframe id="none" name="none" style="display: none"></iframe>
+<button class="home-btn" type="button" style="position: absolute; width: 4%; right: 1%" onclick="window.location.replace('/logout')">Log out</button>
+
+<!-- Home page -->
+<div id="home">
+
+    <!-- View if no application exists -->
+    <div id="noApp">
+        <table class="center-body" style="padding-left: 3%">
+            <ul>
+                <h class="center-title" style="top: 25%">OAED</h>
+                <p class="center-title" style="top: 40%">No applications yet.</p>
+            </ul>
+        </table>
+    </div>
+
+    <!-- View if any application exists -->
+    <div id="appList" style="display: none">
+        <table class="center-body" style="padding-left: 3%">
+            <ul class="center-title" style="top: 25%">
+                <h>OAED</h>
+            </ul>
+            <tr>
+                <th>First name</th>
+                <th>Last name</th>
+                <th>Email</th>
+            </tr>
+            <tr th:each="app: ${applications}">
+                <td th:text="${app.firstName}"/>
+                <td th:text="${app.lastName}"/>
+                <td th:text="${app.email}"/>
+                <td style="border: 0px;">
+                    <button class="home-btn" style="padding: 2px 4px" th:value="${app.id}" onclick="view(this.value)">View</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- Application's details view -->
+    <div id="appDetails" style="display: none">
+        <form class="center-body" action="/api/oaed/validateApplication" method="post" th:each="app: ${applications}">
+            <ul class="center-title">
+                <h>OAED</h>
+            </ul>
+            <ul style="display: none">
+                <input class="input"  type="text" name="id" id="id" readonly>
+            </ul>
+            <ul>
+                <label class="text">First name</label>
+                <input class="input"  type="text" name="firstName" id="firstName" placeholder="First name" readonly>
+            </ul>
+            <ul>
+                <label class="text">Last name</label>
+                <input class="input" type="text" name="lastName" id="lastName" placeholder="Last name" readonly>
+            </ul>
+            <ul>
+                <label class="text">Email</label>
+                <input class="input" type="text" name="email" id="email" placeholder="Email" readonly>
+            </ul>
+            <ul>
+                <label class="text">Phone number</label>
+                <input class="input" type="text" name="phoneNumber" id="phoneNumber" placeholder="Phone number" readonly>
+            </ul>
+            <ul>
+                <label class="text">City</label>
+                <input class="input" type="text" name="city" id="city" placeholder="City" readonly>
+            </ul>
+            <ul>
+                <label class="text">Address 1</label>
+                <input class="input" type="text" name="address1" id="address1" placeholder="Address 1" readonly>
+            </ul>
+            <ul>
+                <label class="text">Address 2</label>
+                <input class="input" type="text" name="address2" id="address2" placeholder="Address 2" readonly>
+            </ul>
+            <ul>
+                <label class="text">ZIP</label>
+                <input class="input" type="text" name="zip" id="zip" placeholder="ZIP" readonly>
+            </ul>
+            <ul>
+                <label class="text">Unempl. Date</label>
+                <input class="input" type="text" name="unemplDate" id="unemplDate" placeholder="Unempl. Date" readonly>
+            </ul>
+            <ul style="position: absolute; right: 35%; bottom: 19%">
+                <label class="text">Photo</label>
+                <img id="photo" src="" width="100px" height="100px" placeholder="Photo" readonly>
+            </ul>
+            <div style="padding-left: 4%;">
+                <input class="employee-btn" type="submit" value="Reject" formaction="/api/oaed/rejectApplication"  style="margin-top: 20%">
+                <input class="employee-btn" type="submit" value="Validate" style="margin-top: 20%">
+            </div>
+            <div>
+                <button class="employee-btn" type="button" style="position: absolute; top: 93%; margin-left: 0.5%" onclick="menu()">Back</button>
+            </div>
+        </form>
+    </div>
+
+</div>
+<script th:inline="javascript">
+
+    const applications = [[${applications}]];
+
+    // Check if applications exist
+    if(applications.length !== 0) {
+        document.getElementById("noApp").style.display = "none";
+        document.getElementById("appList").style.display = "";
+    }
+
+    // View application based on id
+    function view(identity) {
+        let application;
+        let id = parseInt(identity);
+        for (const app of applications) {
+            if (app.id === id) {
+                application = app;
+            }
+        }
+
+        document.getElementById("appList").style.display = "none";
+        document.getElementById("appDetails").style.display = "";
+        document.getElementById("id").value = application.id;
+        document.getElementById("firstName").value = application.firstName;
+        document.getElementById("lastName").value = application.lastName;
+        document.getElementById("email").value = application.email;
+        document.getElementById("phoneNumber").value = application.phoneNumber;
+        document.getElementById("city").value = application.city;
+        document.getElementById("address1").value = application.address1;
+        document.getElementById("address2").value = application.address2
+        document.getElementById("zip").value = application.zip;
+        document.getElementById("unemplDate").value = application.unemplDate;
+        document.getElementById("photo").src = "data:;base64," + application.photo;
+
+    }
+
+    // Back to menu
+    function menu() {
+        document.getElementById("appDetails").style.display = "none";
+        document.getElementById("appList").style.display = "";
+    }
+
+</script>
 </body>
 </html>

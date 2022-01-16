@@ -7,7 +7,9 @@ import java.util.List;
 public interface UsersDAO {
     List<Users> getAllUsers();
     Users getUserById(int id);
-    Users getUserByUsername(String username);
+    Users getUserByUsername(String username) throws Exception;
     Users getUserByEmail(String email);
+    Boolean usernameExists(String username);
+    Boolean emailExists(String email);
     Users signIn(Users user);
 }

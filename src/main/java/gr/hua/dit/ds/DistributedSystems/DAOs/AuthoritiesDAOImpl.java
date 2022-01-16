@@ -27,9 +27,20 @@ public class AuthoritiesDAOImpl implements AuthoritiesDAO {
 
         return authorities;
     }
+
+    @Override
+    public Authorities getAuthorityById(int id) {
+        Query theQuery = entityManager.createQuery("select A from Authorities AS A where A.id=:id");
+        theQuery.setParameter("id", id);
+        List<Authorities> result = theQuery.getResultList();
+        Authorities authority = result.get(0);
+
+        return authority;
+    }
+
     @Override
     public Authorities getAuthorityByUsername(String username) {
-        Query theQuery = entityManager.createQuery("select A from Authorities AS A where A.username=:username");
+        Query theQuery = entityManager.createQuery("select A from Authorities AS A where A.name=:username");
         theQuery.setParameter("username", username);
         List<Authorities> result = theQuery.getResultList();
         Authorities authority = result.get(0);
@@ -48,8 +59,18 @@ public class AuthoritiesDAOImpl implements AuthoritiesDAO {
 
     @Override
     @Transactional
-    public Authorities modifyAuthority(String newUsername, String newAuth) {
-        Authorities authority = getAuthorityByUsername(newUsername);
+    public Authorities deleteAuthority(Authorities authority) {
+        entityManager.remove(authority);
+        entityManager.flush();
+
+        return authority;
+    }
+
+    @Override
+    @Transactional
+    public Authorities modifyAuthority(int id, String newUsername, String newAuth) {
+        Authorities authority = getAuthorityById(id);
+        authority.setName(newUsername);
         authority.setAuthority(newAuth);
 
         return authority;

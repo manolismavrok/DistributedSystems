@@ -2,7 +2,7 @@
 <html xmlns:th="http://thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title></title>
+    <title>Login View</title>
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
     <style>
@@ -12,24 +12,146 @@
     </style>
 </head>
 <body>
-<form action="#" th:action="@{/api/confirmUser}" th:object="${user}" method="post">
-    <ul style="display: flex">
-        <label style="width: 80px" for="username">Username</label>
-        <input required type="text" th:name="username" id="username" placeholder="Username">
-    </ul>
-    <ul style="display: flex;">
-        <label style="width: 80px;" for="password">Password</label>
-        <input required type="text" th:name="password" id="password" placeholder="Password">
-    </ul>
-    <ul>
-        <input type="submit" value="Login">
-    </ul>
-</form>
-<form action="#" th:action="@{/signIn}" method="get">
-    <ul>
-        <p>Don't have an account?</p>
-        <input type="submit" value="Sign in">
-    </ul>
-</form>
+<!-- Defining style here, because css file doesn't properly load during login -->
+<style>
+    .center-body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        height: 95vh;
+    }
+
+    .center-title {
+        position: absolute;
+        left: 50.5%;
+        top: 25%;
+        transform: translate(-50%, -50%);
+        font-size: 1.3rem;
+    }
+
+    .home-btn {
+        box-sizing: inherit;
+        font-family: inherit;
+        border: 1px solid transparent;
+        transition: all .15s ease-in-out;
+        color: #fff;
+        background-color: #007bff;
+        border-color: #007bff;
+        padding: .5rem 1rem;
+        font-size: 1.25rem;
+        line-height: 1.5;
+        border-radius: .3rem;
+        display: block;
+        width: 100%;
+    }
+
+    .home-btn:hover {
+        background-color: #76b3f6;
+        border-color: #76b3f6;
+    }
+
+    .input {
+        box-sizing: inherit;
+        touch-action: manipulation;
+        margin: 0;
+        font-family: inherit;
+        overflow: visible;
+        text-transform: none;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        user-select: none;
+        border: 1px solid transparent;
+        transition: all .15s ease-in-out;
+        border-color: #007bff;
+        border-radius: .3rem;
+        font-size: 1.25rem;
+        width: 120%;
+    }
+
+    .input:focus {
+        outline: none;
+        border-color: #76b3f6;
+    }
+
+    .text {
+        display: flex;
+        font-size: 1.25rem;
+    }
+</style>
+<iframe id="none" name="none" style="display: none"></iframe>
+
+<!-- Home page -->
+<div id="home">
+    <form id="signInForm" class="center-body" action="/login" method="post"
+          onsubmit="this.submit(); this.reset(); return false;">
+        <ul class="center-title" style="top: 30%">
+            <h>Please sign in</h>
+        </ul>
+        <ul>
+            <label class="text" for="username">Username</label>
+            <input class="input" required type="text" name="username" id="username" placeholder="Username">
+        </ul>
+        <ul>
+            <label class="text" for="password">Password</label>
+            <input class="input" required type="password" name="password" id="password" placeholder="Password">
+        </ul>
+        <ul>
+            <input class="home-btn" type="submit" value="Sign in">
+        </ul>
+        <ul style="position: absolute; top: 60%; margin-left: 2%;">
+            <p style="display: inline;">or</p>
+        </ul>
+        <ul style="position: absolute; top: 64%">
+            <input class="home-btn" type="button" value="Create account" onclick="createAccountView()">
+        </ul>
+    </form>
+</div>
+
+<div id="createAccount" style="display: none">
+    <form id="createForm" class="center-body" action="/api/signIn" method="post"
+          onsubmit="this.submit(); this.reset(); return false;">
+        <ul class="center-title">
+            <h>Create account</h>
+        </ul>
+        <ul>
+            <label class="text" for="newUsername">Username</label>
+            <input class="input" type="text" name="username" id="newUsername" placeholder="Username" required>
+        </ul>
+        <ul>
+            <label class="text" for="newPassword">Password</label>
+            <input class="input" type="password" name="password" id="newPassword" placeholder="Password" required >
+        </ul>
+        <ul>
+            <label class="text" for="newEmail">Email</label>
+            <input class="input" type="email" name="email" id="newEmail" placeholder="Email" required >
+        </ul>
+        <ul>
+            <input class="home-btn" type="submit" value="Create">
+        </ul>
+        <ul style="position: absolute; top: 64%; margin-left: 2%;">
+            <p style="display: inline;">or</p>
+        </ul>
+        <ul style="position: absolute; top: 68%">
+            <input class="home-btn" type="button" value="Sign in" onclick="signInView()">
+        </ul>
+    </form>
+</div>
+
 </body>
+<script>
+
+    function createAccountView() {
+        document.getElementById("home").style.display="none";
+        document.getElementById("createAccount").style.display="";
+    }
+
+    function signInView() {
+        document.getElementById("createAccount").style.display="none";
+        document.getElementById("home").style.display="";
+    }
+
+</script>
 </html>

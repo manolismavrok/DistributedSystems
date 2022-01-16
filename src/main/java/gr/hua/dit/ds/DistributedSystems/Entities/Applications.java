@@ -1,6 +1,7 @@
 package gr.hua.dit.ds.DistributedSystems.Entities;
 
 import javax.persistence.*;
+import java.sql.Blob;
 
 @Entity
 @Table(name = "applications")
@@ -34,11 +35,12 @@ public class Applications {
     @Column(name = "zip", nullable = false, length = 10)
     private String zip;
 
-    @Column(name = "unempl_date", nullable = false)
+    @Column(name = "unempl_date", nullable = false, length = 50)
     private String unemplDate;
 
-    @Column(name = "photo", nullable = false, length = 50)
-    private String photo;
+    @Lob
+    @Column(name = "photo", columnDefinition="MEDIUMBLOB", nullable = false)
+    private byte[] photo;
 
     @Column(name = "validated", nullable = true, length = 5)
     private String validated;
@@ -50,7 +52,7 @@ public class Applications {
 
     }
 
-    public Applications(int id, String firstName, String lastName, String email, String phoneNumber, String city, String address1, String address2, String zip, String unemplDate, String photo, String validated, String confirmed) {
+    public Applications(int id, String firstName, String lastName, String email, String phoneNumber, String city, String address1, String address2, String zip, String unemplDate, byte[] photo, String validated, String confirmed) {
         super();
         this.id = id;
         this.firstName = firstName;
@@ -75,11 +77,11 @@ public class Applications {
         this.id = id;
     }
 
-    public String getPhoto() {
+    public byte[] getPhoto() {
         return photo;
     }
 
-    public void setPhoto(String photo) {
+    public void setPhoto(byte[] photo) {
         this.photo = photo;
     }
 

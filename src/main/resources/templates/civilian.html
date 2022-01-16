@@ -2,9 +2,10 @@
 <html xmlns:th="http://thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title></title>
+    <title>Civilian View</title>
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <link href="civilian.css" rel="stylesheet">
     <style>
         body{
             font-family: 'Lato', sans-serif;
@@ -12,53 +13,190 @@
     </style>
 </head>
 <body>
-<form action="#" th:action="@{/api/apply}" th:object="${user}" method="post">
-    <ul style="display: flex">
-        <p style=""><b>Fill Application Form</b></p>
-    </ul>
-    <ul style="display: flex">
-        <label style="width: 120px" for="firstName">First name</label>
-        <input required type="text" th:name="firstName" id="firstName" placeholder="First name">
-    </ul>
-    <ul style="display: flex;">
-        <label style="width: 120px;" for="lastName">Last name</label>
-        <input required type="text" th:name="lastName" id="lastName" placeholder="Last name">
-    </ul>
-    <ul style="display: flex;">
-        <label style="width: 120px;" for="email">Email</label>
-        <input required type="email" th:name="email" th:field="*{email}" id="email" placeholder="Email">
-    </ul>
-    <ul style="display: flex;">
-        <label style="width: 120px;" for="phoneNumber">Phone number</label>
-        <input required type="text" th:name="phoneNumber" id="phoneNumber" placeholder="Phone number">
-    </ul>
-    <ul style="display: flex;">
-        <label style="width: 120px;" for="city">City</label>
-        <input required type="text" th:name="city" id="city" placeholder="City">
-    </ul>
-    <ul style="display: flex;">
-        <label style="width: 120px;" for="address1">Address 1</label>
-        <input required type="text" th:name="address1" id="address1" placeholder="Address 1">
-    </ul>
-    <ul style="display: flex;">
-        <label style="width: 120px;" for="address2">Address 2</label>
-        <input required type="text" th:name="address2" id="address2" placeholder="Address 2">
-    </ul>
-    <ul style="display: flex;">
-        <label style="width: 120px;" for="zipcode">ZIP code</label>
-        <input required type="text" th:name="zipcode" id="zipcode" placeholder="ZIP code">
-    </ul>
-    <ul style="display: flex;">
-        <label style="width: 120px;" for="unemplDate">Unempl. Date</label>
-        <input required type="date" th:name="unemplDate" id="unemplDate" placeholder="Unempl. Date">
-    </ul>
-    <ul style="display: flex;">
-        <label style="width: 120px;" for="photo">Photo</label>
-        <input required type="file" th:name="photo" id="photo" placeholder="Photo">
-    </ul>
-    <ul>
-        <input type="submit" value="Apply">
-    </ul>
-</form>
+<iframe id="none" name="none" style="display: none"></iframe>
+<button class="home-btn" type="button" style="position: absolute; width: 4%; right: 1%" onclick="window.location.replace('/logout')">Log out</button>
+
+<!-- Home page -->
+<div id="home">
+
+    <!-- Application status -->
+    <div class="center-body" id="status" style="display: none">
+        <ul class="center-title" style="top: 30%;">
+            <h>Civilian</h>
+        </ul>
+        <ul id="pending" style="display: none; margin-left: 2%">
+          <label class="text">Application Pending...</label>
+        </ul>
+        <ul id="confirmed" style="display: none; color: green; margin-left: 2%">
+            <label class="text">Application Confirmed</label>
+        </ul>
+        <ul id="rejected" style="display: none; color: red; margin-left: 2%">
+            <label class="text">Application Rejected</label>
+        </ul>
+        <ul>
+            <button class="home-btn" style="margin-top: 20%" onclick="viewForm()">View Form</button>
+        </ul>
+    </div>
+
+    <!-- Application form-->
+    <div id="form">
+        <form class="center-body" action="/api/civilian/apply" method="post" enctype="multipart/form-data"
+              onsubmit="this.submit(); this.reset(); return false;">
+            <ul class="center-title">
+                <h>Civilian</h>
+            </ul>
+            <ul>
+                <input class="input" type="text" name="id" th:value="${id}" style="display: none" required>
+            </ul>
+            <ul>
+                <label class="text">First name</label>
+                <input class="input" type="text" name="firstName" placeholder="First name" required>
+            </ul>
+            <ul>
+                <label class="text">Last name</label>
+                <input class="input" type="text" name="lastName" placeholder="Last name" required>
+            </ul>
+            <ul>
+                <label class="text">Email</label>
+                <input class="input" type="text" name="email" placeholder="Email" required>
+            </ul>
+            <ul>
+                <label class="text">Phone number</label>
+                <input class="input" type="text" name="phoneNumber" placeholder="Phone number" required>
+            </ul>
+            <ul>
+                <label class="text">City</label>
+                <input class="input" type="text" name="city" placeholder="City" required>
+            </ul>
+            <ul>
+                <label class="text">Address 1</label>
+                <input class="input" type="text" name="address1" placeholder="Address 1" required>
+            </ul>
+            <ul>
+                <label class="text">Address 2</label>
+                <input class="input" type="text" name="address2" placeholder="Address 2" required>
+            </ul>
+            <ul>
+                <label class="text">ZIP</label>
+                <input class="input" type="text" name="zipcode" placeholder="ZIP" required>
+            </ul>
+            <ul>
+                <label class="text">Unempl. Date</label>
+                <input class="input" type="date" name="unemplDate" placeholder="Unempl. Date" required>
+            </ul>
+            <ul style="padding-left: 3.5%">
+                <label for="photo" class="text" style="padding-left: 35%">Upload Photo</label>
+                <input class="input" style="width: 32%;" type="file" name="photo" required>
+            </ul>
+            <ul>
+                <input class="home-btn" type="submit" value="Create" style="margin-top: 20%">
+            </ul>
+        </form>
+    </div>
+
+    <!-- View form -->
+    <div id="viewForm" style="display: none">
+        <form class="center-body" >
+            <ul class="center-title">
+                <h>Civilian</h>
+            </ul>
+            <ul>
+                <label class="text">First name</label>
+                <input class="input" type="text" name="firstName" id="firstName" placeholder="First name" readonly>
+            </ul>
+            <ul>
+                <label class="text">Last name</label>
+                <input class="input" type="text" name="lastName" id="lastName" placeholder="Last name" readonly>
+            </ul>
+            <ul>
+                <label class="text">Email</label>
+                <input class="input" type="text" name="email" id="email" placeholder="Email" readonly>
+            </ul>
+            <ul>
+                <label class="text">Phone number</label>
+                <input class="input" type="text" name="phoneNumber" id="phoneNumber" placeholder="Phone number" readonly>
+            </ul>
+            <ul>
+                <label class="text">City</label>
+                <input class="input" type="text" name="city" id="city" placeholder="City" readonly>
+            </ul>
+            <ul>
+                <label class="text">Address 1</label>
+                <input class="input" type="text" name="address1" id="address1" placeholder="Address 1" readonly>
+            </ul>
+            <ul>
+                <label class="text">Address 2</label>
+                <input class="input" type="text" name="address2" id="address2" placeholder="Address 2" readonly>
+            </ul>
+            <ul>
+                <label class="text">ZIP</label>
+                <input class="input" type="text" name="zip" id="zip" placeholder="ZIP" readonly>
+            </ul>
+            <ul>
+                <label class="text">Unempl. Date</label>
+                <input class="input" type="text" name="unemplDate" id="unemplDate" placeholder="Unempl. Date" readonly>
+            </ul>
+            <ul style="position: absolute; right: 35%; bottom: 19%">
+                <label class="text">Photo</label>
+                <img id="photo" src="" width="100px" height="100px" placeholder="Photo" readonly>
+            </ul>
+            <div style="padding-left: 2%">
+                <input class="home-btn" type="button" value="Menu" style="margin-top: 20%;" onclick="home()">
+            </div>
+        </form>
+    </div>
+
+</div>
+
+<script th:inline="javascript">
+
+    const hasApplied = [[${hasApplied}]];
+    const app = [[${app}]];
+    const validated = [[${validated}]];
+    const confirmed = [[${confirmed}]];
+
+    if(hasApplied) {
+        // Show status
+        document.getElementById("form").style.display="none";
+        document.getElementById("status").style.display="";
+        if(validated === "true" && confirmed === "true") {
+            // Confirmed
+            document.getElementById("confirmed").style.display = "";
+        } else if(validated == "false" || confirmed == "false") {
+            // Rejected
+            document.getElementById("rejected").style.display = "";
+        } else {
+            // Pending
+            document.getElementById("pending").style.display = "";
+        }
+
+    }
+
+    function viewForm() {
+        const application = app.pop();
+
+        // Show view form
+        document.getElementById("status").style.display="none";
+        document.getElementById("viewForm").style.display="";
+
+        document.getElementById("firstName").value = application.firstName;
+        document.getElementById("lastName").value = application.lastName;
+        document.getElementById("email").value = application.email;
+        document.getElementById("phoneNumber").value = application.phoneNumber;
+        document.getElementById("city").value = application.city;
+        document.getElementById("address1").value = application.address1;
+        document.getElementById("address2").value = application.address2
+        document.getElementById("zip").value = application.zip;
+        document.getElementById("unemplDate").value = application.unemplDate;
+        document.getElementById("photo").src = "data:;base64," + application.photo;
+    }
+
+    // Back to home
+    function home() {
+        document.getElementById("viewForm").style.display = "none";
+        document.getElementById("status").style.display = "";
+    }
+
+</script>
 </body>
 </html>
