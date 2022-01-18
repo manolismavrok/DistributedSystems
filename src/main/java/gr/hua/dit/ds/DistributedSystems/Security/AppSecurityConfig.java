@@ -51,7 +51,7 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/validations/**").hasRole("OASA")
                 .anyRequest().authenticated()
                 .and()
-                .formLogin().loginPage("/login").permitAll().defaultSuccessUrl("/", true)
+                .formLogin().loginPage("/login").permitAll().defaultSuccessUrl("/", true).failureUrl("/error")
                 .and()
                 .logout().permitAll()
                 .and()

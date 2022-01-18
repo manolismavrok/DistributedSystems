@@ -37,12 +37,23 @@
 <body>
 <div class="center-body">
     <ul>
-        <td th:text="${message}"/>
+        <p id="error"></p>
     </ul>
     <ul>
-        <button class="home-btn" type="button" onclick="location.replace('http://localhost:8080/')">Menu</button>
+        <button class="home-btn" type="button" onclick="location.replace('http://localhost:8080/')">Back</button>
     </ul>
 </div>
 
 </body>
+<script th:inline="javascript">
+
+    const message = [[${message}]];
+
+    if(message === "No message available") {
+        document.getElementById("error").innerHTML = "Bad credentials";
+    } else {
+        document.getElementById("error").innerHTML= message;
+    }
+
+</script>
 </html>

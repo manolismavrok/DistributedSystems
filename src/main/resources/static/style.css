@@ -64,3 +64,11 @@
     display: flex;
     font-size: 1.25rem;
 }
+
+.center-error {
+    position: absolute;
+    left: 52%;
+    top: 22%;
+    transform: translate(-50%, -50%);
+    color: red;
+}

@@ -7,7 +7,6 @@ import gr.hua.dit.ds.DistributedSystems.Entities.Users;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -84,25 +83,23 @@ public class FrontendController {
     @GetMapping("/")
     public void loginPageRedirect(HttpServletRequest request, HttpServletResponse response, Authentication authResult) throws IOException, ServletException {
 
-        String role =  authResult.getAuthorities().toString();
+        String role = authResult.getAuthorities().toString();
 
-        if(role.contains("ROLE_ADMIN")){
+        if (role.contains("ROLE_ADMIN")) {
             response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/admin"));
-        }
-        else if(role.contains("ROLE_CIVILIAN")) {
+        } else if (role.contains("ROLE_CIVILIAN")) {
             response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/civilian"));
-        }
-        else if(role.contains("ROLE_OAED")) {
+        } else if (role.contains("ROLE_OAED")) {
             response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/oaed"));
-        }
-        else if(role.contains("ROLE_OASA")) {
+        } else if (role.contains("ROLE_OASA")) {
             response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/oasa"));
         }
 
     }
 
     @GetMapping("/login")
-    public String loginView() {
+    public String loginView() throws IOException {
+
 
         return "login";
     }
