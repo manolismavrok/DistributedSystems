@@ -126,8 +126,9 @@
 
 <!-- Script to change views -->
 <script>
+
     window.onload = function() {
-        let view = localStorage.getItem("view");
+        let view = sessionStorage.getItem("view");
         if(view === null)
             view = 'home';
         showViewById(view);
@@ -139,7 +140,7 @@
         document.getElementById("deleteUser").style.display = "none";
         document.getElementById("modifyUser").style.display = "none";
         document.getElementById(view).style.display = "";
-        localStorage.setItem('view', view);
+        sessionStorage.setItem('view', view);
     }
 
 </script>
