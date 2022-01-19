@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -106,7 +107,9 @@ public class FrontendController {
 
 
     @GetMapping("/error")
-    public String errorHandler() {
+    public String errorHandler(HttpServletRequest request, Model model) {
+        Object message = request.getAttribute(RequestDispatcher.ERROR_MESSAGE);
+        model.addAttribute("message", message.toString());
 
         return "error";
     }
