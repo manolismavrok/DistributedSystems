@@ -48,11 +48,11 @@
 <script th:inline="javascript">
 
     const message = [[${message}]];
-
-    if(message === "No message available") {
-        document.getElementById("error").innerHTML = "Bad credentials";
+    console.log(message);
+    if(message.valueOf() === "No message available".valueOf()) {
+        document.getElementById("error").innerHTML = "Bad credentials".toString();
     } else {
-        document.getElementById("error").innerHTML= message;
+        document.getElementById("error").innerHTML= message.toString();
     }
 
 </script>
