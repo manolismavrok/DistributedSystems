@@ -127,7 +127,9 @@
 <!-- Script to change views -->
 <script>
     window.onload = function() {
-        const view = localStorage.getItem("view");
+        let view = localStorage.getItem("view");
+        if(view === null)
+            view = 'home';
         showViewById(view);
     }
 
