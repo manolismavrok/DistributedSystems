@@ -49,10 +49,10 @@
 
     const message = [[${message}]];
     console.log(message);
-    if(message.valueOf() === "No message available".valueOf()) {
-        document.getElementById("error").innerHTML = "Bad credentials".toString();
+    if(message === "No message available") {
+        document.getElementById("error").innerHTML = "Bad credentials";
     } else {
-        document.getElementById("error").innerHTML= message.toString();
+        document.getElementById("error").innerHTML= message;
     }
 
 </script>
