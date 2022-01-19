@@ -5,11 +5,13 @@ import gr.hua.dit.ds.DistributedSystems.DAOs.UsersDAO;
 import gr.hua.dit.ds.DistributedSystems.Entities.Applications;
 import gr.hua.dit.ds.DistributedSystems.Entities.Users;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -20,7 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-public class FrontendController {
+public class FrontendController implements ErrorController {
 
     @Autowired
     private UsersDAO usersDAO;
@@ -99,17 +101,15 @@ public class FrontendController {
     }
 
     @GetMapping("/login")
-    public String loginView() throws IOException {
-
+    public String loginView() {
 
         return "login";
     }
 
-
-    @GetMapping("/error")
-    public String errorHandler(HttpServletRequest request, Model model) {
-        Object message = request.getAttribute(RequestDispatcher.ERROR_MESSAGE);
-        model.addAttribute("message", message.toString());
+    @RequestMapping("/error")
+    public String handleError(HttpServletRequest request, Model model) {
+        Object exception = request.getAttribute(RequestDispatcher.ERROR_EXCEPTION);
+        model.addAttribute("exception", exception);
 
         return "error";
     }

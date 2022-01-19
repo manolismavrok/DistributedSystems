@@ -47,12 +47,12 @@
 </body>
 <script th:inline="javascript">
 
-    const message = [[${message}]];
-    console.log(message);
-    if(message === "No message available") {
-        document.getElementById("error").innerHTML = "Bad credentials";
+    const exception = [[${exception}]];
+    if(exception !== null) {
+        const message = exception.cause.message;
+        document.getElementById("error").innerHTML = message;
     } else {
-        document.getElementById("error").innerHTML= message;
+        document.getElementById("error").innerHTML = "Bad credentials.";
     }
 
 </script>
