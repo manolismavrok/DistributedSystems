@@ -1,17 +1,21 @@
-Τα SQL queries βρίσκονται στα αρχεία data.sql και schema.sql κάτω από τον
-φάκελο resources.</br></br>
-Για την εγκατάσταση της εφαρμογής σε Windows(10, 11) ή Linux(Ubuntu), θα χρειαστούν τα ακόλουθα εργαλεία:
-- Java JDK 15 (15.0.2): https://www.techspot.com/downloads/5552-java-15-jdk.html
+# DEPRECATED
+# This Spring Boot project is OBSOLETE, as the hibernate core has altered.<br/>
+# Starting from Hibernate version 6.0, the legacy dialects have been moved to a separate artifact, called hibernate-community-dialects.<br/> 
+# This project will only be kept for archive purposes.
 
-**Εγκατάσταση:**
-- Κατεβάστε το repository από το link: https://github.com/manolismavrok/DistributedSystems
-στον κατάλογο που επιθυμείτε.
-    - Linux εντολή: **git clone https://github.com/manolismavrok/DistributedSystems.git**
-    - Windows: Στο παραπάνω website, πατήστε το πράσινο κουμπί 'Code' και μετά 'Download ZIP'.
-     Αποσυμπιέστε το αρχείο (Extract) στον κατάλογο.
+The SQL queries are located in the files data.sql and schema.sql under the resources folder.</br></br>
+To install the application on Windows (10, 11) or Linux (Ubuntu), you will need the following tools:
 
-**Εκκίνηση:**
-- Μέσω terminal πηγαίνετε στο αρχείο που κατεβάσατε με όνομα DistributedSystems
-(ή DistributedSystems-main).
-- Στο αρχείο αυτό, τρέξτε την εντολή: **java -jar target/DistributedSystems-0.0.1-SNAPSHOT.jar**
+Java JDK 15 (15.0.2): https://www.techspot.com/downloads/5552-java-15-jdk.html
+
+# Installation:
+Download the repository from the link: https://github.com/manolismavrok/DistributedSystems
+to the directory of your choice.
+Linux command: git clone https://github.com/manolismavrok/DistributedSystems.git
+Windows: On the above website, click the green 'Code' button and then 'Download ZIP'.
+Extract the file to the directory.
+
+# Startup:
+Via terminal, navigate to the file you downloaded named DistributedSystems (or DistributedSystems-main).
+In this directory, run the command: java -jar target/DistributedSystems-0.0.1-SNAPSHOT.jar
 
