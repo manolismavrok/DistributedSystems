@@ -2,6 +2,7 @@
 # This Spring Boot project is OBSOLETE, as the hibernate core has altered.<br/>
 # Starting from Hibernate version 6.0, the legacy dialects have been moved to a separate artifact, called hibernate-community-dialects.<br/> 
 # This project will only be kept for archive purposes.
+# <br/>
 
 The SQL queries are located in the files data.sql and schema.sql under the resources folder.</br></br>
 To install the application on Windows (10, 11) or Linux (Ubuntu), you will need the following tools:
